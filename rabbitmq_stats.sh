@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash -xe
 
 stat_names=( messages publish_rate deliver_rate )
 names=( notifications.info metering.sample )

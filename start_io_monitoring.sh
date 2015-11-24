@@ -1,7 +1,7 @@
 #!/bin/bash -xe
 
 
-MAIN_DIR=${1:-"~/monitoring_scripts/"}
+MAIN_DIR=${1:-"/root/monitoring_scripts/"}
 OUTPUT_DIR=${OUTPUT_DIR:-"/tmp/stats_collecting"}
 
 mkdir -p $OUTPUT_DIR

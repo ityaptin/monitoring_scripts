@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash -xe
 
 stat_names=( cpu_util mem_util virtual_memory )
 
