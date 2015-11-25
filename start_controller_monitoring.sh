@@ -5,6 +5,12 @@ OUTPUT_DIR=${OUTPUT_DIR:-"/tmp/mongo_stats_collecting"}
 
 mkdir -p $OUTPUT_DIR
 
+if [[ `cat /etc/*-release | head -n 1 | awk '{print $1}'` =~ Ubuntu ]]; then
+    apt-get install screen sysstat dstat iotop -y
+else
+    yum install screen sysstat dstat iotop -y
+fi
+
 run_mongo_stats_scripts(){
     mongourl=$(cat /etc/ceilometer/ceilometer.conf | grep "^[^#].*mongo" | sed 's:connection *= *::; s:ceilometer:admin:g')
     screen -dmS mongodbstats ${MAIN_DIR}/mongo_stats.py --url $mongourl --result ${OUTPUT_DIR}/$1-mongo-stats.log

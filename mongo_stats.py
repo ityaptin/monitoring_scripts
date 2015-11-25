@@ -90,7 +90,7 @@ def save_output(result_file, output):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--url",
-                        default="mongodb://localhost:27000/ceilometer",
+                        default="mongodb://localhost:27017/ceilometer",
                         help="Url for mongodb connection.")
     parser.add_argument("--interval",
                         default=5,
