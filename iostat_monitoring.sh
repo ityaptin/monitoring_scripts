@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-echo 'TIME,DEVICE,RPS,KPS,RPSkb,KPSkb,UTIL' > $1;
+echo 'TIME,DEVICE,RPS,WPS,RPSkb,WPSkb,UTIL' > $1;
 ubuntu=false
 if [[ `cat /etc/*-release | head -n 1 | awk '{print $1}'` =~ Ubuntu ]]; then
     ubuntu=true

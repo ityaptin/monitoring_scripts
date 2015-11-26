@@ -64,7 +64,7 @@ def get_stats(args):
     db = connection.ceilometer
     db_stats = db.command("dbstats",scale=2**20)
     collection_stats = {}
-    for collection in db.collection_names(False):
+    for collection in db.collection_names():
         collection_stats[collection] = db.command("collstats", collection,
                                                    scale=2**20)
     server_stats = (db.command("serverStatus")

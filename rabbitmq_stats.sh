@@ -16,7 +16,7 @@ fi
 user=nova
 password=($(grep -A 1 'rabbit:' /etc/astute.yaml | grep 'password' | awk '{print $2}'))
 
-function write_stats() {
+function write_admin_stats() {
     for name in ${names[*]}; do
       stats_line=($(rabbitmqadmin -u $user -p $password list queues name messages message_stats.publish_details.rate message_stats.deliver_details.rate | grep $name | awk '{print $4,$6,$8}'))
       ts=$(date +%s)
@@ -26,8 +26,18 @@ function write_stats() {
     done
 }
 
+function write_ctl_stats(){
+    lines=$(rabbitmqctl list_queues name messages | grep -E "(notification)|(metering)|(event)")
+    IFS=$'\n'
+    while read i; do
+    d=$(date +%s)
+    echo -e "$d\t$i" >>
+    done <<< "$lines"
+}
+
+
 echo "" > ${log_file}
 while true; do
   sleep $sleep_time
-  write_stats
+  write_admin_stats
 done
