@@ -7,9 +7,9 @@ OUTPUT_DIR=${OUTPUT_DIR:-"/tmp/ceilometer_stats"}
 mkdir -p $OUTPUT_DIR
 
 if [[ `cat /etc/*-release | head -n 1 | awk '{print $1}'` =~ Ubuntu ]]; then
-    apt-get install sysstat dstat iotop -y
+    apt-get install screen sysstat dstat iotop -y
 else
-    yum install sysstat dstat iotop -y
+    yum install screen sysstat dstat iotop -y
 fi
 
 
